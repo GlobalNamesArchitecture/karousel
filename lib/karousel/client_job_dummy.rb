@@ -1,5 +1,6 @@
 class ClientJobDummy
-  def self.load
+  def self.populate(karousel_size)
+    karousel_size.times.map { self.new }
   end
 
   def send
