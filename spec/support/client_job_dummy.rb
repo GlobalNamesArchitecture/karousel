@@ -1,16 +1,19 @@
 require_relative './dummy_server'
 
 class ClientJobDummy
-  @@i = 0 
-
-  def self.populate(karousel_size)
-    @@i += karousel_size
-    return [] if @@i > 100
-    karousel_size.times.map { self.new }
+  @@dummy_data = 0 
+  
+  def self.reset
+    @@dummy_data = 0
   end
 
-  def self.reset
-    @@i = 0
+  def self.reset_failures
+  end
+
+  def self.populate(karousel_size)
+    @@dummy_data += karousel_size
+    return [] if @@dummy_data > 100
+    karousel_size.times.map { self.new }
   end
 
   def status
@@ -33,7 +36,7 @@ class ClientJobDummy
   end
 
   def process
-    rand(0..10) > 9 ? false : true
   end
+
 end
 
