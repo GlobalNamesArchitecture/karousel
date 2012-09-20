@@ -13,7 +13,7 @@ class Karousel
 
   def populate
     new_seats = []
-    @klass.send("populate", @size - @seats.size).each do |inst|
+    @klass.populate(@size - @seats.size).each do |inst|
       new_seats << Job.new(inst)
     end
     @seats = new_seats + @seats
@@ -29,12 +29,9 @@ class Karousel
       populate
     end
     yield if block
-  end
-
-  def run
     true
   end
-  
+
   private
 
   def send_request
@@ -50,10 +47,11 @@ class Karousel
 
   def check_response
     @seats = @seats[@cursor..-1] + @seats[0...@cursor] if @cursor != 0
-    @size.times do
+    @seats.size.times do
       job = @seats.shift
-      (job.finished? && job.status == :success) ? job.process : @seats.push(job)
+      (job.status != :failure && job.finished? && job.status == :success) ? job.process : @seats.push(job)
     end
     @cursor = 0
   end
+
 end

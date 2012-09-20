@@ -4,6 +4,10 @@ describe "Karousel" do
   before(:all) do
     @karousel = Karousel.new(ClientJobDummy, 20, 0)
   end
+
+  before(:each) do
+    ClientJobDummy.reset
+  end
   
   it "should initiate" do
     k = Karousel.new(ClientJobDummy, 20, 0)
@@ -17,7 +21,8 @@ describe "Karousel" do
   end
   
   it "should run with block" do
-    @karousel.run do
+    karousel = Karousel.new(ClientJobDummy, 20, 0)
+    karousel.run do
     end
   end
 
@@ -27,10 +32,6 @@ describe "Karousel" do
     @karousel.seats.size.should == 20
     @karousel.seats[0].class == Karousel::Job
     @karousel.seats[0].status.should == :init
-  end
-
-  it "should run" do
-    @karousel.run.should == true
   end
 
 end
