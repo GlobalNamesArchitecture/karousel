@@ -2,8 +2,7 @@ Dir[File.join(File.dirname(__FILE__), "karousel", "*.rb")].each {|f| require f}
 
 
 class Karousel
-  attr_reader :size, :time_interval
-  alias :seats_size :size
+  attr_reader :size, :seats, :time_interval
 
   def initialize(klass, size=10, time_interval = 0)
     @klass = klass
@@ -13,17 +12,48 @@ class Karousel
   end
 
   def populate
-    @klass.send("populate", @size).each do |inst|
-      @seats << Job.new(inst)
+    new_seats = []
+    @klass.send("populate", @size - @seats.size).each do |inst|
+      new_seats << Job.new(inst)
     end
+    @seats = new_seats + @seats
+  end
+
+  def run(&block)
+    populate
+    until @seats.empty? do
+      yield if block
+      send_request
+      sleep(@time_interval)
+      check_response
+      populate
+    end
+    yield if block
   end
 
   def run
     true
   end
   
-  def filled_seats 
-    @seats
+  private
+
+  def send_request
+    @cursor = 0
+    @seats.each_with_index do |job, index|
+      if job.status == :sent
+        @cursor = index
+        break
+      end
+      job.send
+    end
   end
 
+  def check_response
+    @seats = @seats[@cursor..-1] + @seats[0...@cursor] if @cursor != 0
+    @size.times do
+      job = @seats.shift
+      (job.finished? && job.status == :success) ? job.process : @seats.push(job)
+    end
+    @cursor = 0
+  end
 end
