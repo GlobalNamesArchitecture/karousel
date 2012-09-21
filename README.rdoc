@@ -1,6 +1,6 @@
 = Karousel
 
-Karousel is a client-side job dispenser for accessing parallelized service which has one queue and multiple workers. If there is only one queue a user with large number of jobs would pretty much block the system for everybody else. Karousel allows to dish out jobs in chunks without overloading the queue. Not only it helps to pervent others use a particular system, it also makes client's job easier in case of crashes or restarts on server or client sides.
+Karousel is a client-side job dispenser for accessing parallelized service which has one queue and multiple workers. If there is only one queue a user with large number of jobs would pretty much block the system for everybody else. Karousel allows to dish out jobs in chunks without overloading the queue. Not only it allows other clients use a particular system if you schedule a massive job, it also makes helps in case of crashes or restarts on the server or the client side.
 
 == Principle of operation
 
@@ -56,7 +56,7 @@ Job class has to correspond to the following signature:
 
     end
 
-You can also check out spec/support/client_job_dummy.rb file or https://github.com/GlobalNamesArchitecture/karousel_example
+You can also check out https://github.com/GlobalNamesArchitecture/karousel/blob/master/spec/support/client_job_dummy.rb file or https://github.com/GlobalNamesArchitecture/karousel_example
 
 == Contributing to karousel
  
