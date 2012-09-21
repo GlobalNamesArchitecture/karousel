@@ -7,9 +7,6 @@ class ClientJobDummy < Karousel::ClientJob
     @@dummy_data = 0
   end
 
-  def self.reset_failures
-  end
-
   def self.populate(karousel_size)
     @@dummy_data += karousel_size
     return [] if @@dummy_data > 100
@@ -24,7 +21,6 @@ class ClientJobDummy < Karousel::ClientJob
 
   def finished?
     @server.following_request
-    rand(100) > 95 ? false : true
   end
 
   def process
