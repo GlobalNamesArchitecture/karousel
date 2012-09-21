@@ -1,6 +1,6 @@
 require_relative './dummy_server'
 
-class ClientJobDummy
+class ClientJobDummy < Karousel::ClientJob
   @@dummy_data = 0 
   
   def self.reset
@@ -14,14 +14,6 @@ class ClientJobDummy
     @@dummy_data += karousel_size
     return [] if @@dummy_data > 100
     karousel_size.times.map { self.new }
-  end
-
-  def status
-    @status ||= 1
-  end
-
-  def status=(new_status)
-    @status = new_status
   end
 
   def send

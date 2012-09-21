@@ -4,7 +4,7 @@ class Karousel
     attr_reader :client_job
 
     def initialize(client_job)
-      raise TypeError.new("Unknown client job type") unless client_job.class == Karousel::ClientJob
+      raise TypeError.new("Unknown client job type") unless client_job.is_a?(Karousel::ClientJob)
       @client_job = client_job
       @invert_status = STATUS.invert
     end

@@ -1,6 +1,62 @@
-= karousel
+= Karousel
 
-Description goes here.
+Karousel is a client-side job dispenser for accessing parallelized service which has one queue and multiple workers. If there is only one queue a user with large number of jobs would pretty much block the system for everybody else. Karousel allows to dish out jobs in chunks without overloading the queue. Not only it helps to pervent others use a particular system, it also makes client's job easier in case of crashes or restarts on server or client sides.
+
+== Principle of operation
+
+The gem works on a carousel principle. Jobs are loaded on a carousel-like object (karousel). The size of the karousel determines how many objects are active at any given time. For example if the size of the karousel is 20 -- it means only 20 objects at a time will access the service.
+
+Karousel makes one turn sending all new jobs to a service. For each of newly jobs karousel waits an OK from the service and an address (usually a URL) where status of the job progress and final result would appear. Then starting with the oldest submitted job karousel checks corresponding address to see if job is finished. If so job is processed and gets removed from the karousel etc. When a turn is completed empty spaces ('seats') get filled with new jobs and the cycle continues.
+
+== Installation
+
+    gem install karousel
+
+== Usage
+
+Given you have a Karousel - compatible job class (for example KarouselJob) the usage is simple:
+
+    require 'karousel'
+    karousel = Karousel.new(KarouselJob, 20, 5)
+    karousel.run
+
+where KarouselJob is the name of your job class, 20 is number of 'seats' on your karousel, 5 - waiting time between cycles in seconds.
+
+You can also use a block and perform logging, collection of data etc after the end of each cycle by supplying a block. For example:
+
+    count = 0
+    karousel.run { puts count += 1 }
+
+or
+
+    result = []
+    karousel.run { result << karousel.cycle_data }
+
+== How to write a Job Class
+
+Job class has to correspond to the following signature:
+
+    class MyJob < Karousel::ClientJob
+
+      def self.populate(seats_number)
+        ... #returns array of the karousel size (seats_number would be 20 in our example)
+      end
+
+      def send
+        ... #sends the job to the service, returns true if it gets expected response, false otherwise
+      end
+
+      def finished?
+        ... #returns true if job is done, false otherwise
+      end
+
+      def process
+        ... #processes finished job
+      end
+
+    end
+
+You can also check out spec/support/client_job_dummy.rb file or https://github.com/GlobalNamesArchitecture/karousel_example
 
 == Contributing to karousel
  
@@ -13,7 +69,7 @@ Description goes here.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
 == Copyright
-
-Copyright (c) 2012 Dmitry Mozzherin. See LICENSE.txt for
+Authors: Dmitry Mozzherin, David Shorthouse
+Copyright (c) 2012 Marine Biological Laboratory. See LICENSE.txt for
 further details.
 
