@@ -1,7 +1,7 @@
 class DummyServer
 
   def first_request
-    @wait_num = rand(1..10)
+    @wait_num = rand(10) + 1
     @tries_num = 0
   end
 

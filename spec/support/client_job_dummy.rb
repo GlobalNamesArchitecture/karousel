@@ -19,12 +19,12 @@ class ClientJobDummy < Karousel::ClientJob
   def send
     @server = DummyServer.new
     @server.first_request
-    rand(0..10) > 9 ? false : true
+    rand(100) > 95 ? false : true
   end
 
   def finished?
     @server.following_request
-    rand(0..10) > 8 ? false : true
+    rand(100) > 95 ? false : true
   end
 
   def process
