@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "karousel"
-  s.version = "0.9.10"
+  s.version = "0.9.11"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dmitry Mozzherin", "David Shorthouse"]
@@ -41,7 +41,7 @@ Gem::Specification.new do |s|
     "spec/support/client_job_dummy.rb",
     "spec/support/dummy_server.rb"
   ]
-  s.homepage = "http://github.com/dimus/karousel"
+  s.homepage = "http://github.com/GlobalNamesArchitecture/karousel"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.24"
