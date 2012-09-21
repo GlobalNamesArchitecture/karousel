@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "karousel"
-  s.version = "0.9.8"
+  s.version = "0.9.9"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dmitry Mozzherin", "David Shorthouse"]
@@ -30,8 +30,10 @@ Gem::Specification.new do |s|
     "features/karousel.feature",
     "features/step_definitions/karousel_steps.rb",
     "features/support/env.rb",
+    "karousel.gemspec",
     "lib/karousel.rb",
     "lib/karousel/client_job.rb",
+    "lib/karousel/errors.rb",
     "lib/karousel/job.rb",
     "spec/job_spec.rb",
     "spec/karousel_spec.rb",
