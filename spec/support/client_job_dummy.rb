@@ -20,7 +20,7 @@ class ClientJobDummy < Karousel::ClientJob
   end
 
   def finished?
-    @server.following_request
+    @server.are_we_there_yet_request
   end
 
   def process
