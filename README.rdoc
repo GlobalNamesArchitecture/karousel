@@ -2,7 +2,7 @@
 
 {<img src="https://secure.travis-ci.org/GlobalNamesArchitecture/karousel.png" />}[http://travis-ci.org/GlobalNamesArchitecture/karousel] {<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/GlobalNamesArchitecture/karousel]
 
-Karousel is an intelligent, client-side job dispenser that accesses a parallelized service without overloading its queue. It dishes out jobs onto a defined number of seats on the 'karousel', tosses out completed jobs, and refills seats with new jobs. As a result, the queue on the parallelized service remains lean and clients make responsible use of the service.
+Karousel is an intelligent, client-side job dispenser that accesses a parallelized service without overloading its queue. It dishes out jobs onto a defined number of 'seats' on the 'karousel', tosses out completed jobs, and refills empty 'seats' with new jobs. As a result, the queue on the parallelized service remains lean and clients make responsible use of the service.
 
 == Principle of operation
 
