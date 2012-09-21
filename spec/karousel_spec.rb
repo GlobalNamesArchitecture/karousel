@@ -24,7 +24,8 @@ describe "Karousel" do
     karousel = Karousel.new(ClientJobDummy, 20, 0)
     karousel.run do
       karousel.cycle_data.size.should > 0
-      statuses = karousel.cycle_data.map {|c| c.status}.uniq!
+      statuses = karousel.cycle_data.map {|c| c.status}
+      statuses.uniq!
       [:failure, :success].should == statuses.sort! if statuses.size > 1
     end
   end
