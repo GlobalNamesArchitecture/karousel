@@ -15,7 +15,7 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "karousel"
-  gem.homepage = "http://github.com/dimus/karousel"
+  gem.homepage = "http://github.com/GlobalNamesArchitecture/karousel"
   gem.license = "MIT"
   gem.summary = %Q{Job dispenser for parallel workers}
   gem.description = %Q{Use it if you have waaay to many items in your workers' queue}
