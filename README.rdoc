@@ -41,7 +41,7 @@ A Job class requires the following signature:
     class MyJob < Karousel::ClientJob
 
       def self.populate(number_of_seats)
-        ... #returns array of the karousel size (number_of_seats would be 20 in our example)
+        ... #returns an array of the karousel size (number_of_seats would be 20 in our example)
       end
 
       def send
