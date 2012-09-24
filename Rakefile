@@ -18,7 +18,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/GlobalNamesArchitecture/karousel"
   gem.license = "MIT"
   gem.summary = %Q{Job dispenser for parallel workers}
-  gem.description = %Q{Use it if you have waaay to many items in your workers' queue}
+  gem.description = %Q{Use it if you have waaay too many items in your workers' queue}
   gem.email = "dmozzherin@gmail.com"
   gem.authors = ["Dmitry Mozzherin", "David Shorthouse"]
   # dependencies defined in Gemfile
