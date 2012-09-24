@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = "karousel"
-  s.version = "0.9.11"
+  s.version = "0.9.12"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dmitry Mozzherin", "David Shorthouse"]
-  s.date = "2012-09-21"
-  s.description = "Use it if you have waaay to many items in your workers' queue"
+  s.date = "2012-09-24"
+  s.description = "Use it if you have waaay too many items in your workers' queue"
   s.email = "dmozzherin@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
