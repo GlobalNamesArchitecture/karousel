@@ -48,14 +48,10 @@ class Karousel
     @seats = @seats[@cursor..-1] + @seats[0...@cursor] if @cursor != 0
     @seats.size.times do
       job = @seats.shift
-      (job.status != :failure && job.finished? && job.status == :success) ? job.process : add_job_back(job)
+      (job.status != :failure && job.finished?) ? job.process : 
+        @seats.push(job)
     end
     @cursor = 0
-  end
-
-  def add_job_back(job)
-    job.status = STATUS[:sent]
-    @seats.push(job)
   end
 
 end
