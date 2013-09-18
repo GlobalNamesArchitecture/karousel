@@ -8,6 +8,10 @@ describe "Karousel" do
   before(:each) do
     ClientJobDummy.reset
   end
+
+  it 'should have version' do
+    Karousel.version.should =~ /^[\d]+\.[\d]+\.[\d]+$/
+  end
   
   it "should initiate" do
     k = Karousel.new(ClientJobDummy, 20, 0)

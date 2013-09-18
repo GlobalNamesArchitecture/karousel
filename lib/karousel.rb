@@ -1,9 +1,13 @@
-Dir[File.join(File.dirname(__FILE__), "karousel", "*.rb")].each {|f| require f}
+Dir[File.join(File.dirname(__FILE__), 'karousel', '*.rb')].each {|f| require f}
 
 
 class Karousel
   attr_reader :size, :seats, :time_interval
   STATUS = { init: 1, sent: 2, success: 3, failure: 4 }
+
+  def self.version
+    VERSION
+  end
 
   def initialize(klass, size=10, time_interval = 0)
     @klass = klass
