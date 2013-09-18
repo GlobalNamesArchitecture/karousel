@@ -5,13 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = "karousel"
-  s.version = "0.9.12"
+  s.version = "0.9.13"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dmitry Mozzherin", "David Shorthouse"]
-  s.date = "2012-09-24"
+  s.date = "2013-09-18"
   s.description = "Use it if you have waaay too many items in your workers' queue"
   s.email = "dmozzherin@gmail.com"
+  s.executables = ["autospec", "cucumber", "htmldiff", "jeweler", "ldiff", "nokogiri", "rackup", "rake", "rdebug", "ri", "rspec"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"
@@ -21,12 +22,24 @@ Gem::Specification.new do |s|
     ".rspec",
     ".rvmrc",
     ".travis.yml",
+    "CHANGELOG",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "bin/autospec",
+    "bin/cucumber",
+    "bin/htmldiff",
+    "bin/jeweler",
+    "bin/ldiff",
+    "bin/nokogiri",
+    "bin/rackup",
+    "bin/rake",
+    "bin/rdebug",
+    "bin/ri",
+    "bin/rspec",
     "features/karousel.feature",
     "features/step_definitions/karousel_steps.rb",
     "features/support/env.rb",
@@ -44,28 +57,28 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/GlobalNamesArchitecture/karousel"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.24"
+  s.rubygems_version = "2.0.3"
   s.summary = "Job dispenser for parallel workers"
 
   if s.respond_to? :specification_version then
-    s.specification_version = 3
+    s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<jeweler>, [">= 0"])
-      s.add_development_dependency(%q<cucumber>, [">= 0"])
-      s.add_development_dependency(%q<rspec>, [">= 0"])
-      s.add_development_dependency(%q<debugger>, [">= 0"])
+      s.add_runtime_dependency(%q<jeweler>, ["~> 1.8"])
+      s.add_development_dependency(%q<cucumber>, ["~> 1.3"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.14"])
+      s.add_development_dependency(%q<debugger>, ["~> 1.6"])
     else
-      s.add_dependency(%q<jeweler>, [">= 0"])
-      s.add_dependency(%q<cucumber>, [">= 0"])
-      s.add_dependency(%q<rspec>, [">= 0"])
-      s.add_dependency(%q<debugger>, [">= 0"])
+      s.add_dependency(%q<jeweler>, ["~> 1.8"])
+      s.add_dependency(%q<cucumber>, ["~> 1.3"])
+      s.add_dependency(%q<rspec>, ["~> 2.14"])
+      s.add_dependency(%q<debugger>, ["~> 1.6"])
     end
   else
-    s.add_dependency(%q<jeweler>, [">= 0"])
-    s.add_dependency(%q<cucumber>, [">= 0"])
-    s.add_dependency(%q<rspec>, [">= 0"])
-    s.add_dependency(%q<debugger>, [">= 0"])
+    s.add_dependency(%q<jeweler>, ["~> 1.8"])
+    s.add_dependency(%q<cucumber>, ["~> 1.3"])
+    s.add_dependency(%q<rspec>, ["~> 2.14"])
+    s.add_dependency(%q<debugger>, ["~> 1.6"])
   end
 end
 
