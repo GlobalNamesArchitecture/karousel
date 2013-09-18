@@ -1,41 +1,42 @@
 class Karousel
   class Job
-    STATUS = { 1 => :init, 2 => :sent, 3 => :success, 4 => :failure }
     attr_reader :client_job
 
     def initialize(client_job)
       raise TypeError.new("Unknown client job type") unless client_job.is_a?(Karousel::ClientJob)
       @client_job = client_job
-      @invert_status = STATUS.invert
     end
 
     def status
-      @status = STATUS[@client_job.status]
-      raise TypeError.new("status must be an integer between 1 and 4") unless @status
+      @status = @client_job.status
+      unless [1,2,3,4].include?(@status)
+        raise TypeError.new('Status must be an integer between 1 and 4') 
+      end
       @status
     end
 
     def status= (new_status)
-      new_status = @invert_status[new_status]
-      raise TypeError.new("Unknown status") unless new_status
+      unless [1,2,3,4].include?(new_status)
+        raise TypeError.new('Status must be an integer between 1 and 4') 
+      end
       @client_job.status = new_status
     end
 
     def send
       is_ok = @client_job.send
-      self.status = is_ok ? :sent : :failure 
+      self.status = (is_ok ? STATUS[:sent] : STATUS[:failure])
       is_ok
     end
 
     def finished?
       is_ok = @client_job.finished?
-      self.status = is_ok ? :success : :failure
+      self.status = (is_ok ? STATUS[:success] : STATUS[:failure])
       is_ok
     end
 
     def process
       is_ok = @client_job.process
-      self.status = is_ok ? :success : :failure
+      self.status = (is_ok ? STATUS[:success] : STATUS[:failure])
       is_ok
     end
 

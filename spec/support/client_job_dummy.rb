@@ -1,4 +1,4 @@
-require_relative './dummy_server'
+require_relative 'dummy_server'
 
 class ClientJobDummy < Karousel::ClientJob
   @@dummy_data = 0 

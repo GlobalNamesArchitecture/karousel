@@ -3,13 +3,13 @@ Dir[File.join(File.dirname(__FILE__), "karousel", "*.rb")].each {|f| require f}
 
 class Karousel
   attr_reader :size, :seats, :time_interval, :cycle_data
+  STATUS = { init: 1, sent: 2, success: 3, failure: 4 }
 
   def initialize(klass, size=10, time_interval = 0)
     @klass = klass
     @size = size
     @time_interval = time_interval
     @seats = []
-    @cycle_data = []
   end
 
   def populate
@@ -36,7 +36,7 @@ class Karousel
   def send_request
     @cursor = 0
     @seats.each_with_index do |job, index|
-      if job.status == :sent
+      if job.status == STATUS[:sent]
         @cursor = index
         break
       end
@@ -45,14 +45,17 @@ class Karousel
   end
 
   def check_response
-    @cycle_data = []
     @seats = @seats[@cursor..-1] + @seats[0...@cursor] if @cursor != 0
     @seats.size.times do
       job = @seats.shift
-      @cycle_data << job
-      (job.status != :failure && job.finished? && job.status == :success) ? job.process : @seats.push(job)
+      (job.status != :failure && job.finished? && job.status == :success) ? job.process : add_job_back(job)
     end
     @cursor = 0
+  end
+
+  def add_job_back(job)
+    job.status = STATUS[:sent]
+    @seats.push(job)
   end
 
 end
