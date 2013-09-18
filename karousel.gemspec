@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary = 'Job dispenser for parallel workers'
 
   s.homepage = 'http://github.com/GlobalNamesArchitecture/karousel'
-  s.license = ['MIT']
+  s.license = 'MIT'
 
   s.files = `git ls-files`.split($/)
   s.test_files    = s.files.grep(%r{^(spec|features)/})
