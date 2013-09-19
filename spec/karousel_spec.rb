@@ -26,6 +26,14 @@ describe "Karousel" do
   
   it "should run with block" do
     karousel = Karousel.new(ClientJobDummy, 20, 0)
+    count = 0
+    karousel.run do 
+      count += 1
+      if count < 10
+        karousel.seats[1].class.should == Karousel::Job 
+        karousel.seats[1].client_job.class.should == ClientJobDummy
+      end
+    end
   end
 
   it "should be able to get loaded with jobs" do 
@@ -35,5 +43,7 @@ describe "Karousel" do
     @karousel.seats[0].class == Karousel::Job
     @karousel.seats[0].status.should == Karousel::STATUS[:init]
   end
+
+
 
 end
