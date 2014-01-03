@@ -2,6 +2,8 @@ rvm:
   - 1.9.3-p484
   - 2.0.0-p353
   - 2.1.0
+before_install:
+  - sudo gem install debugger
 branches:
   only:
       - master
