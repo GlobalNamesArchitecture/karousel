@@ -123,7 +123,7 @@ further details.
 [9]: https://gemnasium.com/GlobalNamesArchitecture/karousel.png
 [10]: https://gemnasium.com/GlobalNamesArchitecture/karousel
 [11]: https://github.com/GlobalNamesArchitecture/karousel/blob/master/spec/support/client_job_dummy.rb
-[12]: https://github.com/GlobalNamesArchitecture/karousel
+[12]: https://github.com/GlobalNamesArchitecture/karousel_example
 [13]: http://semver.org/
 [14]: https://github.com/dimus
 [15]: https://github.com/dshorthouse
