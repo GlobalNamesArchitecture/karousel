@@ -1,0 +1,10 @@
+AllCops:
+  Exclude:
+    - bundle_bin/**/*
+    - bin/**/*
+  Include:
+    - '**/Gemfile'
+    - '**/Rakefile'
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*.rb

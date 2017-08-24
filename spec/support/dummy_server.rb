@@ -1,5 +1,7 @@
-class DummyServer
+# frozen_string_literal: true
 
+# Dummy Server for specs
+class DummyServer
   def first_request
     @wait_num = rand(10) + 1
     @tries_num = 0
@@ -9,5 +11,4 @@ class DummyServer
     @tries_num += 1
     @tries_num == @wait_num ? true : false
   end
-
 end

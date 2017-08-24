@@ -1,16 +1,10 @@
+# frozen_string_literal: true
+
 require 'coveralls'
 Coveralls.wear!
 
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'rspec'
+$LOAD_PATH.unshift(File.join(__dir__, '..', 'lib'))
+$LOAD_PATH.unshift(__dir__)
 require 'karousel'
-require_relative 'support/client_job_dummy'
-
-# Requires supporting files with custom matchers and macros, etc,
-# in ./support/ and its subdirectories.
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
-
-RSpec.configure do |config|
-  
-end
+require 'support/client_job_dummy'
+require 'support/dummy_server'

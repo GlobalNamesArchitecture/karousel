@@ -1,15 +1,20 @@
-Dir[File.join(File.dirname(__FILE__), 'karousel', '*.rb')].each {|f| require f}
+# frozen_string_literal: true
 
+require_relative 'karousel/client_job'
+require_relative 'karousel/errors'
+require_relative 'karousel/job'
+require_relative 'karousel/version'
 
+# Implements karousel
 class Karousel
   attr_reader :size, :seats, :time_interval
-  STATUS = { init: 1, sent: 2, success: 3, failure: 4 }
+  STATUS = { init: 1, sent: 2, success: 3, failure: 4 }.freeze
 
   def self.version
     VERSION
   end
 
-  def initialize(klass, size=10, time_interval = 0)
+  def initialize(klass, size = 10, time_interval = 0)
     @klass = klass
     @size = size
     @time_interval = time_interval
@@ -26,7 +31,7 @@ class Karousel
 
   def run(&block)
     populate
-    until @seats.empty? do
+    until @seats.empty?
       send_request
       sleep(@time_interval)
       check_response
@@ -52,10 +57,12 @@ class Karousel
     @seats = @seats[@cursor..-1] + @seats[0...@cursor] if @cursor != 0
     @seats.size.times do
       job = @seats.shift
-      (job.status != :failure && job.finished?) ? job.process : 
+      if job.status != :failure && job.finished?
+        job.process
+      else
         @seats.push(job)
+      end
     end
     @cursor = 0
   end
-
 end

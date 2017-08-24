@@ -1,12 +1,12 @@
-require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
+# frozen_string_literal: true
 
 describe Karousel::Job do
+  subject { Karousel::Job.new(ClientJobDummy.new) }
 
-  it "should instantiate" do 
-    j = Karousel::Job.new(ClientJobDummy.new)
-    j.class.should == Karousel::Job
-    j.client_job.class.should == ClientJobDummy
+  describe '.new' do
+    it 'instantiates' do
+      expect(subject).to be_kind_of Karousel::Job
+      expect(subject.client_job).to be_kind_of ClientJobDummy
+    end
   end
-
 end
-

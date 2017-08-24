@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 class Karousel
+  # Abstract class for ClientJob
   class ClientJob
     attr_accessor :status
 
@@ -27,6 +30,5 @@ class Karousel
     def not_implemented_error
       raise Karousel::NotImplementedError
     end
-
   end
 end

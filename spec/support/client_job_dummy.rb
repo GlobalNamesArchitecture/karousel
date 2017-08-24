@@ -1,16 +1,16 @@
-require_relative 'dummy_server'
+# frozen_string_literal: true
 
 class ClientJobDummy < Karousel::ClientJob
-  @@dummy_data = 0 
-  
+  @dummy_data = 0
+
   def self.reset
-    @@dummy_data = 0
+    @dummy_data = 0
   end
 
   def self.populate(karousel_size)
-    @@dummy_data += karousel_size
-    return [] if @@dummy_data > 100
-    karousel_size.times.map { self.new }
+    @dummy_data += karousel_size
+    return [] if @dummy_data > 100
+    Array.new(karousel_size, new)
   end
 
   def send
@@ -23,8 +23,5 @@ class ClientJobDummy < Karousel::ClientJob
     @server.are_we_there_yet_request
   end
 
-  def process
-  end
-
+  def process; end
 end
-
