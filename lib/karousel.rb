@@ -14,11 +14,12 @@ class Karousel
     VERSION
   end
 
-  def initialize(klass, size = 10, time_interval = 0)
+  def initialize(klass, size = 10, time_interval = 0, data = nil)
     @klass = klass
     @size = size
     @time_interval = time_interval
     @seats = []
+    @klass.load(data) if data
   end
 
   def populate

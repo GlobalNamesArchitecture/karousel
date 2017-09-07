@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 class Karousel
-  VERSION = '0.9.15'
+  VERSION = '0.10.0'
 end
